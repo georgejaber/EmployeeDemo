@@ -11,18 +11,18 @@ public class DemoApplication {
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
     }
-//
-//    @Bean
-//    CommandLineRunner commandLineRunner(EmployeeRepository repository)
-//    {return args -> {
-//        repository.save(new Employee("george","jaber","jaber.george2@gmail.com"));
-//
-//        System.out.println(repository.findAll());
-//
-//
-//    };
-//
-//    }
+
+    @Bean
+    CommandLineRunner commandLineRunner(EmployeeRepository repository)
+    {return args -> {
+        repository.save(new Employee("george","jaber","jaber.george2@gmail.com"));
+
+        System.out.println(repository.findAll());
+
+
+    };
+
+    }
 
 
 
