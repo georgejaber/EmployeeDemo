@@ -1,7 +1,10 @@
 package com.example.demo;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -12,26 +15,31 @@ public class EmployeeController {
         this.service = service;
     }
 
+    @GetMapping("/Employee/{id}")
+    public ResponseEntity<Employee> findById(@PathVariable Long id) {
+        return new ResponseEntity<>(service.findById(id), HttpStatus.FOUND);
+    }
+
     @GetMapping("/Employee/returnAll")
-    public List<Employee> findAll() {
-        return service.findAll();
+    public ResponseEntity<List<Employee>> findAll() {
+        return new ResponseEntity<>(service.findAll(), HttpStatus.FOUND);
     }
 
     @PostMapping("/Employees")
-    public String addEmployees(@RequestBody List<Employee> employees) {
-        return service.addEmployees(employees);
+    public ResponseEntity<String> addEmployees(@Valid @RequestBody List<Employee> employees) {
+        return new ResponseEntity<>(service.addEmployees(employees),HttpStatus.CREATED);
     }
 
     @PutMapping("/Employee/{id}")
-    public Employee updateEmployee(@PathVariable Long id, @RequestBody Employee employee)
+    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id,@Valid @RequestBody Employee employee)
     {
-        return service.updateEmployee(id,employee);
+        return new ResponseEntity<>(service.updateEmployee(id,employee),HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/Employee/{id}")
-    public String delete(@PathVariable Long id) {
+    public ResponseEntity<String> delete(@PathVariable Long id) {
 
-        return service.deleteEmployee(id);
+        return new ResponseEntity<>(service.deleteEmployee(id),HttpStatus.OK);
 
     }
 

@@ -1,6 +1,9 @@
 package com.example.demo;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity(name = "Employee")
 @Table(name = "employee",uniqueConstraints = {@UniqueConstraint(name = "email_unique",columnNames = "email")})
@@ -9,10 +12,18 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id",nullable = false)
     private Long id;
-   @Column(name = "first_name", nullable = false)
+
+
+    @Size(min = 2, message = "The firstname has to be more than 2 characters")
+    @NotEmpty(message = "you have to fill the blank")
+    @Column(name = "first_name", nullable = false)
     private String first_name;
+    @Size(min = 2, message = "The lastname has to be more than 2 characters")
+    @NotEmpty(message = "you have to fill the blank")
     @Column(name = "last_name",nullable = false)
     private String last_name;
+    @NotEmpty(message = "you have to fill the blank")
+    @Email(message = "insert a valid email")
     @Column(name = "email",nullable = false)
     private String email;
 
