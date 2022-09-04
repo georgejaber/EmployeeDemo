@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +42,11 @@ public class EmployeeController {
 
         return new ResponseEntity<>(service.deleteEmployee(id),HttpStatus.OK);
 
+    }
+    @GetMapping("Employee/returnAll/{PageNumber}/{PageSize}/{SortBy}/{Direction}")
+    public ResponseEntity<Page<Employee>> PagingAndSorting(@PathVariable int PageNumber, @PathVariable int PageSize, @PathVariable String SortBy, @PathVariable String Direction)
+    {
+        return new ResponseEntity<>(service.PagingAndSorting(PageNumber,PageSize,Direction,SortBy),HttpStatus.OK);
     }
 
 }

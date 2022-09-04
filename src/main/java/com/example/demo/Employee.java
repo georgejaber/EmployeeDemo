@@ -16,12 +16,12 @@ public class Employee {
 
     @Size(min = 2, message = "The firstname has to be more than 2 characters")
     @NotEmpty(message = "you have to fill the blank")
-    @Column(name = "first_name", nullable = false)
-    private String first_name;
+    @Column(nullable = false)
+    private String firstname;
     @Size(min = 2, message = "The lastname has to be more than 2 characters")
     @NotEmpty(message = "you have to fill the blank")
-    @Column(name = "last_name",nullable = false)
-    private String last_name;
+    @Column(nullable = false)
+    private String lastname;
     @NotEmpty(message = "you have to fill the blank")
     @Email(message = "insert a valid email")
     @Column(name = "email",nullable = false)
@@ -34,28 +34,28 @@ public class Employee {
     public void setEmail(String email) {
         this.email = email;
     }
-    public Employee(String first_name, String last_name, String email) {
-        this.first_name = first_name;
-        this.last_name = last_name;
+    public Employee(String firstname, String lastname, String email) {
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.email = email;
     }
 
     public Employee() {}
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstname(String first_name) {
+        this.firstname = first_name;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastname(String last_name) {
+        this.lastname = last_name;
     }
 
     public Long getId() {
@@ -70,8 +70,8 @@ public class Employee {
     public String toString() {
         return "Employee{" +
                 "id=" + id +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
+                ", first_name='" + firstname + '\'' +
+                ", last_name='" + lastname + '\'' +
                 ", email='" + email + '\'' +
                 '}';
     }
